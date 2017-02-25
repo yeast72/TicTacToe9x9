@@ -1,9 +1,11 @@
-package softpec_ticTest;
+package main;
 
 import java.util.Scanner;
 
 import algorithm.Strategy;
 import algorithm.StrategyA;
+import model.Board;
+import model.Player;
 
 public class Game {
 	private Player[] players;

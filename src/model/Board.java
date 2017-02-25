@@ -1,4 +1,4 @@
-package softpec_ticTest;
+package model;
 
 public class Board {
 	public static final int BOARD_SIZE = 9;

@@ -1,4 +1,4 @@
-package softpec_ticTest;
+package model;
 
 public class Player {
 	private String name;

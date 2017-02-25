@@ -1,4 +1,4 @@
-package softpec_ticTest;
+package model;
 
 public class Symbol {
 	private String value;

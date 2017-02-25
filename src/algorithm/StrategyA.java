@@ -1,7 +1,7 @@
 package algorithm;
 
-import softpec_ticTest.Board;
-import softpec_ticTest.Player;
+import model.Board;
+import model.Player;
 
 public class StrategyA implements Strategy{
 

@@ -1,5 +1,6 @@
 package main;
 
+import java.security.GeneralSecurityException;
 import java.util.Scanner;
 
 import algorithm.Strategy;
@@ -15,7 +16,7 @@ public class Game {
 
 	public Game() {
 		this.players = new Player[2];
-		this.board = new Board();
+		this.board = board.getInstance();
 		this.scan = new Scanner(System.in);
 		this.over = false;
 

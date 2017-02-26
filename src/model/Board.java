@@ -4,14 +4,21 @@ public class Board {
 	public static final int BOARD_SIZE = 9;
 	private Symbol[][] map;
 	public static final String STRING_EMPTY = "_";
+	private static Board instance;
 	
-	public Board() {
+	private Board() {
 		setMap(new Symbol[BOARD_SIZE][BOARD_SIZE]);
 		for (int i = 0; i < BOARD_SIZE; i++) {
 			for (int j = 0; j < BOARD_SIZE; j++) {
 				getMap()[i][j] = new Symbol(STRING_EMPTY);
 			}
 		}
+	}
+	
+	public static Board getInstance(){
+		if(instance == null)
+			instance = new Board();
+		return instance;
 	}
 
 	public void placeSymbol(Symbol symbol, int row, int col) {

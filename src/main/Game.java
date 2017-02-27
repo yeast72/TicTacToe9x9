@@ -1,6 +1,5 @@
 package main;
 
-import java.security.GeneralSecurityException;
 import java.util.Scanner;
 
 import algorithm.Strategy;
@@ -29,37 +28,59 @@ public class Game {
 		return over;
 	}
 	
+	public int[] readInputRowColumn(){
+		int x = -1,y = -1;
+		int output[] = new int [2];
+		do{
+			try{
+				System.out.print("Please select row: ");
+				x = Integer.parseInt(scan.nextLine());
+				System.out.print("Please select col: ");				
+				y = Integer.parseInt(scan.nextLine());
+			}catch(NumberFormatException e){
+				System.out.println("Please input number!!!");
+			}
+			if(!board.isEmpty(x, y))
+				System.out.println("Try again this index not empty!!!");
+		}while (!board.isEmpty(x, y));
+		output[0] = x;
+		output[1] = y;
+		return output;
+	}
+	
 	public void start(Strategy stategy) {
+		String name,symbol;
 		for(int i = 0 ; i < 2 ; i++){
 			System.out.print("Input player "+ (i+1) + " name : ");
-			String name = scan.nextLine();
+			name = scan.nextLine();
+			do{
 			System.out.print("Input player "+ (i+1) + " symbol : ");
-			String symbol = scan.nextLine();
+			symbol = scan.nextLine();
+			if(symbol.equals("_"))
+				System.out.println("Please select another symbol");
+			}while(symbol.equals("_"));
 			players[i] = createPlayer(name,symbol);
 		}
-		int round = 0,turn,x=-1,y=-1;
+		
+		int round = 0,turn;
+		int input[] = new int[2];
 		do{
 			turn = round % 2 ;
 			System.out.println("Player " + players[turn].getName() + " turn.");
-			do{
-				System.out.print("Please select row: ");
-				x = Integer.parseInt(scan.nextLine());
-				System.out.print("Please select col: ");
-				y = Integer.parseInt(scan.nextLine());
-			}while (!board.isEmpty(x, y));
-				board.placeSymbol(players[turn].getSymbol(), x, y);
-				board.printBoard();
-				over = stategy.isEnd(board,players[turn]);
-				if(isOver())
-					System.out.println(players[turn].getName()+" win in round "+round + " !!!!");
-				else if(stategy.isFull(board)){
-					System.out.println("Draw");
-					over = true;
-				}
-				else{
-					System.out.println("You placed " + players[turn].getName() + " on (" + x + "," + y + ")");
-				}
-				round++;
+			input = readInputRowColumn();
+			board.placeSymbol(players[turn].getSymbol(), input[0],input[1]);
+			board.printBoard();
+			over = stategy.isEnd(board,players[turn]);
+			if(isOver())
+				System.out.println(players[turn].getName()+" win in round "+round + " !!!!");
+			else if(stategy.isFull(board)){
+				System.out.println("Draw");
+				over = true;
+			}
+			else{
+				System.out.println("You placed " + players[turn].getName() + " on (" + input[0] + "," + input[1] + ")");
+			}
+			round++;
 				
 		}while(!isOver());
 	}

@@ -43,9 +43,9 @@ public class Board {
 	}
 
 	public boolean isEmpty(int row, int col) {
-		if(row > BOARD_SIZE || col > BOARD_SIZE)
+		if(row > BOARD_SIZE || col > BOARD_SIZE || row == -1 && col == -1 )
 			return false;
-		else if (getMap()[row - 1][col - 1].getValue().equals(STRING_EMPTY) || row == -1 && col == -1 ) {
+		else if (getMap()[row - 1][col - 1].getValue().equals(STRING_EMPTY)) {
 			return true;
 		}
 		return false;

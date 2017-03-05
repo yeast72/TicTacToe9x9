@@ -23,7 +23,6 @@ public class Board {
 
 	public void placeSymbol(Symbol symbol, int row, int col) {
 		getMap()[row - 1][col - 1] = symbol;
-
 	}
 
 	public Symbol getSymbol(int row, int col) {

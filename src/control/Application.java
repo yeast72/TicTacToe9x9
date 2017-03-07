@@ -8,12 +8,13 @@ public class Application {
 	public static void main(String[] args){
 		StrategyA strategy = new StrategyA();
 		Game g = new Game(strategy);
-		Console console = new Console();
 		TicTacToeUI gui = new TicTacToeUI(g);
+		Console console = new Console(g,gui);
+	
 		
 		//run game on GUI
 		gui.run();
-		console.run(g);
+		console.run();
 		//run game on console
 		//console.run();
 	}

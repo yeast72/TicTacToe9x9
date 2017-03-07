@@ -1,5 +1,6 @@
 package ui;
 
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,7 +17,7 @@ public class TicTacToeUI extends JFrame implements Runnable{
 	private JPanel gamePanel = new JPanel();
 	private XOButton buttons[][] = new XOButton[9][9];
 	private Game game;
-	private Console console = new Console();
+	private Console console;
 	private JLabel topic;
 	private boolean checkEnd;
 	private JButton resetButton;
@@ -27,6 +28,7 @@ public class TicTacToeUI extends JFrame implements Runnable{
 	public TicTacToeUI(Game g){
 		super("TicTacToe");
 		this.game = g;
+		this.console = new Console(game,this);
 		setSize(450,450);
 		checkEnd = false;
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -35,7 +37,7 @@ public class TicTacToeUI extends JFrame implements Runnable{
 		
 	}
 	private void initComponents() {
-		gamePanel.setLayout(new GridLayout(3, 1));
+		gamePanel.setLayout(new FlowLayout());
 		
 		panelButton = new JPanel(new GridLayout(1,2));
 		resetButton = new JButton( "Reset" );
@@ -79,7 +81,7 @@ public class TicTacToeUI extends JFrame implements Runnable{
 	public void resetTable(){
 		for(int i = 0 ; i < 9 ; i++) {
 			for(int j = 0 ; j < 9 ; j++){
-				buttons[i][j].setText("");
+				buttons[i][j].setText("_ ");
 			}
 		}
 	}
@@ -90,6 +92,10 @@ public class TicTacToeUI extends JFrame implements Runnable{
 	@Override
 	public void run() {
 		setVisible(true);
+	}
+	
+	public void showText(int row ,int col,String val){
+		buttons[row][col].setText(val);
 	}
 
 }

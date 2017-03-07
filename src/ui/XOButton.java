@@ -16,7 +16,8 @@ public class XOButton extends JButton implements ActionListener{
 	private Game game;
 	public XOButton(Console console,Game g,int row,int column){
 		super();
-		setText("");
+		setText("_ ");
+	//	this.setSize(arg0, arg1);
 		this.game = g;
 		this.row = row;
 		this.column = column;
@@ -27,11 +28,11 @@ public class XOButton extends JButton implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		if(getText().isEmpty() && !game.isOver(game.getCurrentPlayer())){
+		if(getText().equals("_ ") && !game.isOver(game.getCurrentPlayer())){
 			if(game.getCurrentPlayer().getSymbol().getValue().equals("X")){
 				setText("X");
 			}
-			else
+			else 
 				setText("O");
 			console.insertDialogUI(game, row+1,column +1);
 		}

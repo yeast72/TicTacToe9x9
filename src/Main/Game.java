@@ -13,11 +13,13 @@ public class Game {
 	private Board board;
 	private Strategy strategy;
 	private Player currentPlayer;
+	private int round;
 
 	public Game(Strategy strategy) {
 		this.players = new Player[]{ new Player( "P1", "X" ), new Player( "P2", "O" ) };
 		this.board = board.getInstance();
 		this.strategy = strategy;
+		round = 0;
 		currentPlayer = players[0];
 	}
 	
@@ -41,6 +43,10 @@ public class Game {
 		else {
 			currentPlayer = players[0];
 		}
+		round++;
+	}
+	public int getRound(){
+		return round;
 	}
 	
 	public Player getCurrentPlayer() {
@@ -53,5 +59,6 @@ public class Game {
 	public void reset() {
 		board.clearMap();
 		currentPlayer = players[0];
+		round = 0;
 	}
 }
